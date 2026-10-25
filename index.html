@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pediatric Nursing MCQs - Modern</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        /* Modern Design Tokens & Variables - Base (Light) */
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #0ea5e9;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --border-color: #e2e8f0;
+            --font-size-base: 16px;
+            --transition-speed: 0.3s;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --radius: 20px;
+            --card-backdrop: none;
+        }
+
+        /* Themes */
+        /* 1. Midnight Dark */
+        body.theme-dark {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --primary: #6366f1;
+            --primary-hover: #818cf8;
+            --shadow: 0 10px 30px rgba(0,0,0,0.4);
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --success-light: rgba(16, 185, 129, 0.15);
+            --danger-light: rgba(239, 68, 68, 0.15);
+        }
+
+        /* 2. Glassmorphism Gradient */
+        body.theme-glass {
+            background: linear-gradient(-45deg, #4f46e5, #ec4899, #0ea5e9, #10b981);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            --text-color: #1e293b;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-backdrop: blur(12px);
+            --border-color: rgba(255, 255, 255, 0.3);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        /* 3. Medical Blue */
+        body.theme-medical {
+            --bg-color: #e0f2fe;
+            --text-color: #0c4a6e;
+            --card-bg: #ffffff;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --border-color: #bae6fd;
+            --success: #059669;
+        }
+
+        /* 4. Soft Pastel */
+        body.theme-pastel {
+            --bg-color: #fdf4ff;
+            --text-color: #4a044e;
+            --card-bg: #ffffff;
+            --primary: #d946ef;
+            --primary-hover: #c026d3;
+            --border-color: #f5d0fe;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Global Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { font-size: var(--font-size-base); font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        #app { width: 100%; max-width: 900px; position: relative; z-index: 10; }
+
+        /* Screens */
+        .screen {
+            background: var(--card-bg);
+            backdrop-filter: var(--card-backdrop);
+            -webkit-backdrop-filter: var(--card-backdrop);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .screen.active { display: block; opacity: 1; transform: translateY(0); }
+
+        h1 { color: var(--primary); font-weight: 800; font-size: 2.2rem; text-align: center; margin-bottom: 0.5rem; }
+        h2 { font-weight: 700; text-align: center; margin-bottom: 1.5rem; }
+        h3 { font-weight: 600; margin-bottom: 1rem; }
+        .subtitle { text-align: center; margin-bottom: 2.5rem; opacity: 0.8; font-weight: 500; }
+
+        /* Settings Dashboard Grid */
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .form-group { 
+            display: flex; flex-direction: column; gap: 0.5rem; 
+            background: rgba(0,0,0,0.02); padding: 1.2rem; 
+            border-radius: 12px; border: 1px solid var(--border-color);
+        }
+        body.theme-dark .form-group { background: rgba(255,255,255,0.02); }
+        .form-group label { font-weight: 600; font-size: 0.95rem; display: flex; justify-content: space-between;}
+        
+        select, input[type="range"] {
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            transition: border-color var(--transition-speed);
+        }
+        select:focus { outline: none; border-color: var(--primary); }
+        
+        input[type="range"] { accent-color: var(--primary); }
+
+        /* Toggle Switch */
+        .toggle-container { display: flex; align-items: center; justify-content: space-between; cursor: pointer; width: 100%;}
+        .toggle-switch {
+            position: relative; width: 52px; height: 28px;
+            background-color: var(--border-color); border-radius: 28px;
+            transition: var(--transition-speed); flex-shrink: 0;
+        }
+        .toggle-switch::after {
+            content: ''; position: absolute; top: 3px; left: 3px;
+            width: 22px; height: 22px; background-color: #fff;
+            border-radius: 50%; transition: var(--transition-speed);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input[type="checkbox"] { display: none; }
+        input[type="checkbox"]:checked + .toggle-switch { background-color: var(--primary); }
+        input[type="checkbox"]:checked + .toggle-switch::after { transform: translateX(24px); }
+
+        /* Buttons */
+        button {
+            background-color: var(--primary); color: white;
+            border: none; padding: 1rem 2rem; font-size: 1.1rem;
+            font-weight: 700; border-radius: 12px; cursor: pointer;
+            transition: all 0.3s ease; text-align: center; width: 100%;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover:not(:disabled) {
+            background-color: var(--primary-hover); transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+        button:disabled { background-color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.7; }
+        
+        .btn-secondary { background-color: transparent; color: var(--primary); border: 2px solid var(--primary); box-shadow: none;}
+        .btn-secondary:hover:not(:disabled) { background-color: rgba(79, 70, 229, 0.1); box-shadow: none;}
+        .btn-success { background-color: var(--success); }
+        .btn-success:hover:not(:disabled) { background-color: #059669; }
+        .btn-warning { background-color: #f59e0b; color: white;}
+        .btn-warning:hover:not(:disabled) { background-color: #d97706; }
+        .btn-outline { background-color: transparent; border: none; box-shadow: none; text-decoration: underline; color: var(--text-color); }
+        .btn-outline:hover { background-color: transparent; transform: none; color: var(--primary); }
+
+        /* Quiz UI */
+        .progress-container {
+            width: 100%; height: 10px; background: var(--border-color);
+            border-radius: 5px; margin-bottom: 2rem; overflow: hidden;
+        }
+        .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-weight: 600; color: var(--primary); }
+        .badge { background: var(--primary); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;}
+
+        .mcq-card {
+            border: 1px solid var(--border-color); padding: 2rem;
+            border-radius: 16px; margin-bottom: 2rem;
+            background: var(--card-bg); box-shadow: var(--card-shadow);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .question-text { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.6; }
+        .options-grid { display: flex; flex-direction: column; gap: 1rem; }
+
+        .option-label {
+            display: flex; align-items: center; padding: 1.2rem;
+            border: 2px solid var(--border-color); border-radius: 12px;
+            cursor: pointer; transition: all var(--transition-speed);
+            background: transparent; font-weight: 500; font-size: 1.05rem;
+        }
+        .option-label:hover:not(.locked) { border-color: var(--primary); background: rgba(79, 70, 229, 0.05); transform: translateX(5px); }
+        .option-label input[type="radio"] { margin-right: 1.2rem; transform: scale(1.3); cursor: pointer; accent-color: var(--primary); }
+
+        .option-label.selected { border-color: var(--primary); background: rgba(79, 70, 229, 0.1); }
+        .option-label.locked { cursor: default; }
+        .option-label.correct { border-color: var(--success); background: var(--success-light); color: #065f46; }
+        .option-label.wrong { border-color: var(--danger); background: var(--danger-light); color: #991b1b; }
+        body.theme-dark .option-label.correct { color: #34d399; }
+        body.theme-dark .option-label.wrong { color: #fca5a5; }
+
+        .nav-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+
+        /* Results UI */
+        .results-header { text-align: center; margin-bottom: 2rem; }
+        
+        /* Animated SVG Circle */
+        .circular-progress {
+            position: relative; width: 180px; height: 180px; margin: 0 auto 2rem;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .circular-progress svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+        .circular-progress circle {
+            fill: none; stroke-width: 14; stroke-linecap: round;
+            transform: translate(10px, 10px); /* Account for stroke width */
+        }
+        .circular-progress .bg { stroke: var(--border-color); }
+        .circular-progress .progress {
+            stroke: var(--primary); stroke-dasharray: 440; stroke-dashoffset: 440;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .circular-value {
+            position: absolute; font-size: 2.5rem; font-weight: 800; color: var(--primary);
+            display: flex; flex-direction: column; align-items: center; line-height: 1;
+        }
+        .circular-value span { font-size: 1rem; font-weight: 500; color: var(--text-color); margin-top: 5px; opacity: 0.8;}
+
+        /* Stat Cards */
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem; margin-bottom: 2.5rem;
+        }
+        .stat-card {
+            background: rgba(0,0,0,0.02); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 1.5rem; text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+        body.theme-dark .stat-card { background: rgba(255,255,255,0.02); }
+        .stat-card .stat-title { font-size: 0.9rem; font-weight: 600; opacity: 0.8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;}
+        .stat-card .stat-value { font-size: 2rem; font-weight: 800; }
+        .val-correct { color: var(--success); }
+        .val-incorrect { color: var(--danger); }
+
+        /* Review Section */
+        .review-section { margin-top: 2rem; display: none; }
+        .review-card {
+            background: var(--card-bg); border-left: 6px solid var(--danger);
+            border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow); border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+        }
+        .review-q { font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; }
+        .review-ans-row { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem; }
+        .ans-wrong { color: var(--danger); font-weight: 500; display: flex; align-items: center; gap: 8px;}
+        .ans-correct { color: var(--success); font-weight: 600; display: flex; align-items: center; gap: 8px;}
+
+        /* Custom Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .modal-overlay.show { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: var(--card-bg); padding: 2.5rem; border-radius: 20px;
+            max-width: 450px; width: 90%; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-color);
+        }
+        .modal-overlay.show .modal-content { transform: scale(1); }
+        .modal-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+
+        /* Floating Emoji Animation */
+        .floating-emoji {
+            position: fixed; pointer-events: none; z-index: 9998; font-size: 2rem;
+            animation: floatUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+        }
+
+        /* Confetti Canvas */
+        #confetti { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10000; }
+
+        /* Footer */
+        .footer-credit {
+            text-align: center; margin-top: 3rem; padding-top: 2rem;
+            border-top: 1px solid var(--border-color); font-size: 0.9rem;
+            font-weight: 500; opacity: 0.8; letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 600px) {
+            .nav-buttons { flex-direction: column; }
+            .screen { padding: 1.5rem; }
+            .circular-progress { width: 140px; height: 140px; }
+            .circular-progress circle { r: 60; cx: 70; cy: 70; }
+            .circular-progress .progress { stroke-dasharray: 377; stroke-dashoffset: 377; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti"></canvas>
+
+    <!-- Custom Alert/Confirm Modal -->
+    <div class="modal-overlay" id="custom-modal">
+        <div class="modal-content">
+            <h2 id="modal-title" style="color: var(--primary); margin-bottom: 1rem;">Warning</h2>
+            <p id="modal-message" style="font-size: 1.05rem; opacity: 0.9; line-height: 1.5;"></p>
+            <div class="modal-buttons">
+                <button id="modal-btn-no" class="btn-secondary">Cancel</button>
+                <button id="modal-btn-yes" class="btn-success">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="screen active">
+            <h1>Pediatric Nursing Exam</h1>
+            <p class="subtitle">Configure your interactive assessment</p>
+
+            <div class="config-grid">
+                <div class="form-group">
+                    <label for="q-count"><span>Questions</span> <span id="q-count-display" style="color:var(--primary); font-weight:800;">20</span></label>
+                    <input type="range" id="q-count" min="5" max="55" value="20">
+                </div>
+
+                <div class="form-group">
+                    <label>Display Format</label>
+                    <select id="display-mode">
+                        <option value="single">Single Question (Slides)</option>
+                        <option value="list">List Mode (Continuous)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Theme Strategy</label>
+                    <select id="theme-style">
+                        <option value="light" selected>Minimal Light</option>
+                        <option value="dark">Midnight Dark</option>
+                        <option value="glass">Glassmorphism Gradient</option>
+                        <option value="medical">Medical Blue</option>
+                        <option value="pastel">Soft Pastel</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Click Animation</label>
+                    <select id="click-emoji">
+                        <option value="none">None</option>
+                        <option value="✨" selected>✨ Sparkles</option>
+                        <option value="🩺">🩺 Stethoscope</option>
+                        <option value="👶">👶 Baby</option>
+                        <option value="⭐">⭐ Star</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="justify-content: center;">
+                    <label class="toggle-container">
+                        <span>Study / Revision Mode</span>
+                        <input type="checkbox" id="study-mode">
+                        <div class="toggle-switch"></div>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Font Size</label>
+                    <div class="font-controls" style="margin-bottom:0; justify-content: flex-start; margin-top: 5px;">
+                        <button class="btn-secondary" onclick="changeFontSize(-1)" style="padding: 0.5rem; flex:1;">A-</button>
+                        <button class="btn-secondary" onclick="changeFontSize(1)" style="padding: 0.5rem; flex:1;">A+</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-start">Start Test 🚀</button>
+
+            <div class="footer-credit">
+                Made with love by : AMER ALSHARIF | Student No: 447055067 | Group: 23
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="header-flex">
+                <span id="quiz-status">Question 1 of 20</span>
+                <span id="quiz-mode-badge" class="badge">Test Mode</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div id="questions-container">
+                <!-- Injected via JS -->
+            </div>
+
+            <div class="nav-buttons" id="nav-single" style="display:none;">
+                <button id="btn-prev" class="btn-secondary">Previous</button>
+                <button id="btn-next">Next</button>
+            </div>
+            <div class="nav-buttons">
+                <button id="btn-submit" class="btn-success" style="display:none;">Submit Exam ✅</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-header">
+                <h1 id="result-title">Exam Complete!</h1>
+                <p class="subtitle" style="margin-bottom: 1rem;">Here is your performance summary</p>
+            </div>
+            
+            <div class="circular-progress">
+                <svg>
+                    <circle class="bg" cx="80" cy="80" r="70"></circle>
+                    <circle class="progress" id="svg-progress" cx="80" cy="80" r="70"></circle>
+                </svg>
+                <div class="circular-value">
+                    <div id="score-text">0%</div>
+                </div>
+            </div>
+            
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Total Questions</div>
+                    <div class="stat-value" id="stat-total">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Correct</div>
+                    <div class="stat-value val-correct" id="stat-correct">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Incorrect</div>
+                    <div class="stat-value val-incorrect" id="stat-incorrect">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Accuracy</div>
+                    <div class="stat-value" id="stat-accuracy">0%</div>
+                </div>
+            </div>
+
+            <div id="incorrect-container" class="review-section">
+                <h2 style="text-align: left; margin-bottom: 1.5rem; color: var(--danger);">Review Incorrect Answers</h2>
+                <div id="incorrect-list"></div>
+            </div>
+
+            <div class="nav-buttons" style="margin-top: 3rem;">
+                <button id="btn-retest" class="btn-warning" style="display:none;">Retest Failed Questions 🔄</button>
+                <button id="btn-restart" class="btn-primary">Start New Exam</button>
+                <button id="btn-home" class="btn-outline">Back to Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Comprehensive Question Bank (~55 Questions based on provided PDF) ---
+        const questionBank = [
+            // Philosophy of Care
+            { q: "What approach recognizes the family as the constant in a child's life?", options: ["Family-Centered Care", "Atraumatic Care", "Primary Nursing", "Cultural Humility"], ans: 0 },
+            { q: "Which concept involves interventions that eliminate or minimize psychologic and physical distress experienced by children?", options: ["Family-Centered Care", "Atraumatic Care", "Therapeutic Play", "Palliative Care"], ans: 1 },
+            { q: "Cultural humility is best described as:", options: ["Knowing every detail about a patient's culture", "Strictly following hospital policies regardless of culture", "A process of self-reflection to promote honest and trustworthy relationships", "Assuming competence over open flexibility"], ans: 2 },
+            { q: "How should a nurse approach a child's and family's religious beliefs and practices?", options: ["Encourage them to adopt hospital routines", "Respect them and contact the chaplaincy department if needed", "Listen for agreement rather than understanding", "Limit family visitation to avoid rituals"], ans: 1 },
+            
+            // Nutrition - Infant feeding & Weaning
+            { q: "How long does the American Academy of Pediatrics recommend exclusive breastfeeding?", options: ["Until 3 months of age", "Until 4 months of age", "Until 6 months of age", "Until 12 months of age"], ans: 2 },
+            { q: "Which of the following is an absolute contraindication to breastfeeding?", options: ["Mother with a common cold", "Infant with physiological jaundice", "Active tuberculosis in the mother", "Mother taking multivitamins"], ans: 2 },
+            { q: "Which of the following conditions in the infant is a contraindication to breastfeeding?", options: ["Galactosemia", "Cleft lip", "Oral candidiasis", "Mongolian spots"], ans: 0 },
+            { q: "The process of gradually introducing the first food to the infant and relinquishing the breast/bottle is called:", options: ["Pacing", "Supplementing", "Complementing", "Weaning"], ans: 3 },
+            { q: "At what age is the introduction of solid foods generally recommended?", options: ["2 to 3 months", "4 to 6 months", "8 to 9 months", "12 months"], ans: 1 },
+            { q: "What is a common sequence for introducing solid foods to an infant?", options: ["Meats, vegetables, fruits", "Vegetables, meats, fruits", "Strained fruits, vegetables, meats", "Dairy, fruits, meats"], ans: 2 },
+            { q: "How frequently should a new solid food be introduced to distinguish allergic reactions?", options: ["Every 1 to 2 days", "Every 5 to 7 days", "Every 2 weeks", "Once a month"], ans: 1 },
+            { q: "By 8 to 9 months, which of the following foods are appropriate to introduce?", options: ["Strained fruits only", "Well-cooked table foods", "Nutritious finger foods like firmly cooked vegetables", "Raw grapes"], ans: 2 },
+            
+            // Birth Injuries
+            { q: "Which birth injury presents as blood ruptured between the bone and its periosteum?", options: ["Caput succedaneum", "Cephalohematoma", "Subgaleal hemorrhage", "Epidural hematoma"], ans: 1 },
+            { q: "Which statement is true regarding a cephalohematoma?", options: ["It crosses the suture line", "It is present immediately at birth", "It does not cross the suture line", "It requires immediate surgical drainage"], ans: 2 },
+            { q: "What complication may result from a cephalohematoma?", options: ["Hypoglycemia", "Hyper-bilirubinemia", "Sepsis", "Pneumonia"], ans: 1 },
+            { q: "Which birth injury is described as an edematous tissue swelling that extends beyond the bone margins?", options: ["Cephalohematoma", "Caput succedaneum", "Subdural hematoma", "Skull fracture"], ans: 1 },
+            { q: "What is the typical treatment for Caput succedaneum?", options: ["Immediate surgical drainage", "Phototherapy", "Antibiotics", "No treatment is needed; it subsides in a few days"], ans: 3 },
+            { q: "Skin changes like ecchymosis are generally associated with which head injury?", options: ["Cephalohematoma", "Caput succedaneum", "Hydrocephalus", "Skull fracture"], ans: 1 },
+            
+            // Dermatologic Problems
+            { q: "What medication is indicated for chronic cases of oral thrush in addition to antifungal drugs?", options: ["Gentian violet solution", "Amoxicillin", "Hydrocortisone cream", "Silver sulfadiazine"], ans: 0 },
+            { q: "How should a nurse instruct caregivers to clean reusable nipples and pacifiers to prevent oral candidiasis?", options: ["Wash with warm soapy water only", "Wipe with alcohol pads", "Boil for at least 20 minutes", "Microwave for 5 minutes"], ans: 2 },
+            { q: "Mongolian blue spots are considered:", options: ["Normal discolorations of the skin requiring reassurance", "Abnormal birthmarks requiring surgery", "Signs of physical abuse", "An indication of a bleeding disorder"], ans: 0 },
+            
+            // Child Hospitalization
+            { q: "In early childhood (toddler stage), which behaviors indicate separation anxiety?", options: ["Quietly crying and withdrawing", "Temper tantrums and regressing to more primitive levels", "Writing angry letters", "Rejection of siblings"], ans: 1 },
+            { q: "How do preschoolers (3-6 years) commonly demonstrate separation anxiety?", options: ["Refusing to eat, crying quietly, or withdrawing", "Temper tantrums and bedwetting", "Hyperactivity and elation", "Bradycardia"], ans: 0 },
+            { q: "In school-age children (6-12), how might they express negative feelings during hospitalization?", options: ["Regressing to bedwetting", "Irritability, aggression toward parents, or rejection of siblings", "Refusing to cooperate during self-care", "Excessive clinging to nurses"], ans: 1 },
+            { q: "For adolescents, what poses a severe emotional threat during hospitalization?", options: ["Separation from parents", "Fear of the dark", "Loss of peer-group contact", "Loss of physical mobility"], ans: 2 },
+            
+            // High-Risk Neonates
+            { q: "An infant born before 38 weeks of gestation is classified as:", options: ["Term", "Preterm", "Post-term", "Small for gestational age"], ans: 1 },
+            { q: "A Low Birth Weight (LBW) infant is defined as having a birth weight less than:", options: ["3000 gm", "2500 gm", "1500 gm", "1000 gm"], ans: 1 },
+            { q: "An Extremely Low Birth Weight (ELBW) infant weighs less than:", options: ["2500 gm", "1500 gm", "1000 gm", "500 gm"], ans: 2 },
+            { q: "Which is a physiological reason for premature newborn maladaptation in the respiratory system?", options: ["Increased number of alveoli", "Larger lumen in respiratory passages", "Decreased collapsibility of passages", "Decreased surfactant level"], ans: 3 },
+            
+            // RDS & Jaundice
+            { q: "Neonatal Respiratory Distress Syndrome (RDS) is primarily defined as a syndrome caused by:", options: ["Bacterial lung infection", "Developmental insufficiency of surfactant production", "Meconium aspiration", "Congenital heart defect"], ans: 1 },
+            { q: "Severe Respiratory Distress Syndrome is associated with which state?", options: ["Hyperactivity", "Shock-like state with diminished cardiac output and bradycardia", "Hypertension and tachycardia", "Polycythemia"], ans: 1 },
+            { q: "Which finding on a chest x-ray represents alveolar atelectasis in RDS?", options: ["Clear lung fields", "Hyperinflation", "Ground-glass appearance", "Large pleural effusions"], ans: 2 },
+            { q: "When does physiologic jaundice typically appear in a newborn?", options: ["During the first 24 hours", "After 24 hours", "Immediately at birth", "After 2 weeks"], ans: 1 },
+            { q: "When does hemolytic disease (pathologic jaundice) typically present?", options: ["During the first 24 hours", "On the 3rd to 4th day", "After 1 week", "On the 10th day"], ans: 0 },
+            { q: "Which nursing intervention is essential during phototherapy?", options: ["Limit fluid intake", "Dress the infant in warm clothing", "Cover the eyes and genitalia", "Keep baby in a single position"], ans: 2 },
+            
+            // Sepsis
+            { q: "Early-onset neonatal sepsis usually occurs within what timeframe?", options: ["First 24 hours", "First 72 hours", "First week", "First month"], ans: 0 },
+            
+            // Tonsillectomy & Croup & Pneumonia
+            { q: "Which of the following is an absolute indication for a tonsillectomy?", options: ["First episode of tonsillitis", "Peritonsillar abscess", "Mild snoring", "Allergic rhinitis"], ans: 1 },
+            { q: "After a tonsillectomy, which type of fluid should generally be avoided?", options: ["Cool water", "Apple juice", "Fluids with a red or brown color", "Flavored ice pops (not red)"], ans: 2 },
+            { q: "After a tonsillectomy, what is the best positioning for the child until fully awake?", options: ["Supine with head flat", "Positioned to facilitate drainage of secretions", "Trendelenburg", "High Fowler's"], ans: 1 },
+            { q: "Acute epiglottitis is characterized by which major symptoms?", options: ["Brassy cough and hoarseness", "Purulent secretions and low-grade fever", "Drooling, dysphagia, and toxic appearance", "Croupy cough awakening child at night"], ans: 2 },
+            { q: "Which general respiratory sign is commonly associated with pneumonia in children?", options: ["Clear breath sounds", "Rhonchi or fine crackles", "Slow respirations", "Hyperresonance with percussion"], ans: 1 },
+            
+            // GI Dysfunction & Malnutrition
+            { q: "Kwashiorkor is primarily defined as:", options: ["General malnutrition of both calories and protein", "A deficiency of protein with an adequate supply of calories", "A severe vitamin C deficiency", "An iron deficiency anemia"], ans: 1 },
+            { q: "A child with thin, wasted extremities and a prominent abdomen from edema (ascites) likely has:", options: ["Marasmus", "Celiac disease", "Kwashiorkor", "Cystic fibrosis"], ans: 2 },
+            { q: "Marasmus is characterized by:", options: ["Protein deficiency with adequate calories", "A prominent abdomen from ascites", "Gradual wasting and atrophy of body tissues, especially subcutaneous fat", "Being confined only to areas where food is inadequate"], ans: 2 },
+            { q: "What is a fatal complication if caloric intake progresses too rapidly in a severely malnourished child?", options: ["Refeeding syndrome (cardiac failure)", "Acute renal failure", "Hepatic encephalopathy", "Spontaneous pneumothorax"], ans: 0 },
+            { q: "What is the recommended rehydration therapy for mild dehydration (5% to 6%)?", options: ["ORS, 100 ml/kg within 4 hours", "Intravenous Ringer lactate, 40 ml/kg", "ORS, 50 ml/kg within 4 hours", "Plain water ad libitum"], ans: 2 },
+            { q: "What is the recommended rehydration therapy for severe dehydration (>9%)?", options: ["Intravenous fluids (Ringer lactate), 40 ml/kg", "ORS, 100 ml/kg within 4 hours", "ORS, 50 ml/kg within 4 hours", "Intravenous Dextrose 5% in Water"], ans: 0 },
+            { q: "Which of the following are prominent clinical signs of Necrotizing Enterocolitis (NEC)?", options: ["Constipation and weight gain", "Hyperthermia and excessive crying", "Projectile vomiting immediately after birth", "Distended abdomen, gastric residuals, and blood in stools"], ans: 3 },
+            { q: "Which radiographic sign is characteristic of Necrotizing Enterocolitis?", options: ["Intestinal pneumatosis (soapsuds appearance)", "Ground-glass appearance in lungs", "Steeple sign", "Thumbprint sign on epiglottis"], ans: 0 },
+            
+            // Cardiovascular Dysfunction
+            { q: "Which congenital heart disease is classified as decreasing pulmonary blood flow?", options: ["Atrial septal defect", "Patent ductus arteriosus", "Coarctation of aorta", "Tetralogy of Fallot"], ans: 3 },
+            { q: "Which of the following is NOT one of the four classic defects of Tetralogy of Fallot?", options: ["Ventricular septal defect", "Pulmonic stenosis", "Atrial septal defect", "Overriding aorta"], ans: 2 },
+            { q: "What is the most common neurologic complication observed after heart surgery in infants?", options: ["Meningitis", "Cerebral palsy", "Seizures", "Hydrocephalus"], ans: 2 },
+            { q: "Postpericardiotomy syndrome is characterized by:", options: ["Hypothermia and bradycardia", "Severe hypertension", "Fever, leukocytosis, and pericardial friction rub", "Pulmonary hemorrhage"], ans: 2 },
+            { q: "Acute Rheumatic Fever (ARF) is a result of an abnormal immune response to:", options: ["Staphylococcus aureus", "Group A streptococci (GAS)", "Haemophilus influenzae", "Respiratory syncytial virus"], ans: 1 },
+            { q: "Cardiac valve damage, a significant complication of ARF, is referred to as:", options: ["Infective endocarditis", "Rheumatic heart disease (RHD)", "Kawasaki disease", "Cardiomyopathy"], ans: 1 },
+            { q: "What vital sign check is always required before administering digoxin to a child?", options: ["Check radial pulse for 15 seconds", "Check respiratory rate", "Check apical pulse for 1 full minute", "Check blood pressure"], ans: 2 },
+            { q: "At what pulse rate should digoxin generally be withheld in infants and young children?", options: ["Below 120 beats/min", "Below 70 beats/min", "Below 90 to 110 beats/min", "Above 160 beats/min"], ans: 2 },
+            { q: "Before administering digoxin to an older child, the cutoff point to withhold the drug is a pulse below:", options: ["60 beats/min", "70 beats/min", "90 beats/min", "110 beats/min"], ans: 1 },
+            { q: "Which electrolyte imbalance enhances the effects of digoxin, increasing the risk of toxicity?", options: ["Hyperkalemia", "Hyponatremia", "Hypokalemia (low serum potassium)", "Hypercalcemia"], ans: 2 },
+            { q: "What should the nurse do if an infant vomits shortly after a dose of digoxin?", options: ["Immediately administer a second dose", "Seek the practitioner's advice before administering the next dose", "Give the next dose early", "Administer an antiemetic immediately"], ans: 1 }
+        ];
+
+        // --- State Management ---
+        let state = {
+            currentQuiz: [],
+            currentIndex: 0,
+            answers: {},
+            failedQuestions: [],
+            settings: {
+                count: 20,
+                displayMode: 'single',
+                themeStyle: 'light',
+                clickEmoji: '✨',
+                studyMode: false,
+                fontSize: 16
+            },
+            isRetest: false
+        };
+
+        // --- DOM Elements ---
+        const els = {
+            screens: {
+                settings: document.getElementById('settings-screen'),
+                quiz: document.getElementById('quiz-screen'),
+                results: document.getElementById('results-screen')
+            },
+            inputs: {
+                count: document.getElementById('q-count'),
+                countDisplay: document.getElementById('q-count-display'),
+                displayMode: document.getElementById('display-mode'),
+                themeStyle: document.getElementById('theme-style'),
+                clickEmoji: document.getElementById('click-emoji'),
+                studyMode: document.getElementById('study-mode')
+            },
+            btns: {
+                start: document.getElementById('btn-start'),
+                prev: document.getElementById('btn-prev'),
+                next: document.getElementById('btn-next'),
+                submit: document.getElementById('btn-submit'),
+                retest: document.getElementById('btn-retest'),
+                restart: document.getElementById('btn-restart'),
+                home: document.getElementById('btn-home')
+            },
+            quiz: {
+                container: document.getElementById('questions-container'),
+                status: document.getElementById('quiz-status'),
+                progressBar: document.getElementById('progress-bar'),
+                navSingle: document.getElementById('nav-single'),
+                modeBadge: document.getElementById('quiz-mode-badge')
+            },
+            results: {
+                svgProgress: document.getElementById('svg-progress'),
+                text: document.getElementById('score-text'),
+                statTotal: document.getElementById('stat-total'),
+                statCorrect: document.getElementById('stat-correct'),
+                statIncorrect: document.getElementById('stat-incorrect'),
+                statAccuracy: document.getElementById('stat-accuracy'),
+                incorrectContainer: document.getElementById('incorrect-container'),
+                incorrectList: document.getElementById('incorrect-list'),
+                title: document.getElementById('result-title')
+            },
+            modal: {
+                overlay: document.getElementById('custom-modal'),
+                title: document.getElementById('modal-title'),
+                msg: document.getElementById('modal-message'),
+                btnYes: document.getElementById('modal-btn-yes'),
+                btnNo: document.getElementById('modal-btn-no')
+            }
+        };
+
+        // --- Utility Functions ---
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        function switchScreen(screenKey) {
+            Object.values(els.screens).forEach(s => s.classList.remove('active'));
+            setTimeout(() => els.screens[screenKey].classList.add('active'), 50);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function applyTheme() {
+            document.body.className = '';
+            const theme = state.settings.themeStyle;
+            if (theme === 'dark') document.body.classList.add('theme-dark');
+            if (theme === 'glass') document.body.classList.add('theme-glass');
+            if (theme === 'medical') document.body.classList.add('theme-medical');
+            if (theme === 'pastel') document.body.classList.add('theme-pastel');
+        }
+
+        function changeFontSize(change) {
+            state.settings.fontSize = Math.max(14, Math.min(22, state.settings.fontSize + (change * 2)));
+            document.documentElement.style.setProperty('--font-size-base', `${state.settings.fontSize}px`);
+        }
+
+        function showModal(title, msg, onConfirm) {
+            els.modal.title.innerText = title;
+            els.modal.msg.innerText = msg;
+            els.modal.overlay.classList.add('show');
+            
+            els.modal.btnYes.onclick = () => {
+                els.modal.overlay.classList.remove('show');
+                onConfirm();
+            };
+            els.modal.btnNo.onclick = () => els.modal.overlay.classList.remove('show');
+        }
+
+        // --- Core Quiz Logic ---
+        function startExam(questionsSource, isRetest = false) {
+            state.isRetest = isRetest;
+            
+            // Apply Settings
+            state.settings.count = Math.min(parseInt(els.inputs.count.value), questionBank.length);
+            state.settings.displayMode = els.inputs.displayMode.value;
+            state.settings.themeStyle = els.inputs.themeStyle.value;
+            state.settings.clickEmoji = els.inputs.clickEmoji.value;
+            state.settings.studyMode = els.inputs.studyMode.checked;
+            
+            applyTheme();
+
+            // Prepare Questions
+            let pool = JSON.parse(JSON.stringify(questionsSource));
+            
+            if (!isRetest) {
+                pool = shuffle(pool).slice(0, state.settings.count);
+            }
+
+            // Always Shuffle Options
+            pool.forEach(q => {
+                let mappedOpts = q.options.map((text, idx) => ({ text, isCorrect: idx === q.ans }));
+                mappedOpts = shuffle(mappedOpts);
+                q.options = mappedOpts.map(o => o.text);
+                q.ans = mappedOpts.findIndex(o => o.isCorrect);
+            });
+
+            state.currentQuiz = pool;
+            state.currentIndex = 0;
+            state.answers = {};
+            state.failedQuestions = [];
+
+            // UI Setup
+            els.quiz.modeBadge.innerText = state.settings.studyMode ? "Study Mode" : "Test Mode";
+            els.quiz.modeBadge.style.background = state.settings.studyMode ? "var(--secondary)" : "var(--primary)";
+
+            renderQuizUI();
+            switchScreen('quiz');
+        }
+
+        function renderQuizUI() {
+            els.quiz.container.innerHTML = '';
+            
+            if (state.settings.displayMode === 'single') {
+                els.quiz.navSingle.style.display = 'flex';
+                els.btns.submit.style.display = 'none';
+                renderSingleQuestion(state.currentIndex);
+                updateProgress();
+            } else {
+                els.quiz.navSingle.style.display = 'none';
+                els.btns.submit.style.display = 'block';
+                state.currentQuiz.forEach((_, idx) => renderSingleQuestion(idx, true));
+                updateProgress(); 
+            }
+        }
+
+        function renderSingleQuestion(index, append = false) {
+            const q = state.currentQuiz[index];
+            const isAnswered = state.answers[index] !== undefined;
+            const selectedOptIdx = state.answers[index];
+            const isStudyLocked = state.settings.studyMode && isAnswered;
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'mcq-card';
+            qDiv.id = `qcard-${index}`;
+
+            let html = `<div class="question-text">${index + 1}. ${q.q}</div><div class="options-grid">`;
+            
+            q.options.forEach((optText, optIdx) => {
+                const optId = `q${index}_opt${optIdx}`;
+                const isSelected = selectedOptIdx === optIdx;
+                
+                let classes = 'option-label';
+                if (isSelected) classes += ' selected';
+                
+                if (isStudyLocked) {
+                    classes += ' locked';
+                    if (optIdx === q.ans) classes += ' correct';
+                    else if (isSelected && optIdx !== q.ans) classes += ' wrong';
+                }
+
+                html += `
+                    <label class="${classes}" for="${optId}" id="label_${optId}">
+                        <input type="radio" name="q${index}" id="${optId}" value="${optIdx}" 
+                            ${isSelected ? 'checked' : ''} ${isStudyLocked ? 'disabled' : ''}>
+                        ${optText}
+                    </label>
+                `;
+            });
+            html += `</div>`;
+            qDiv.innerHTML = html;
+
+            // Bind Events
+            qDiv.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', (e) => handleSelection(index, parseInt(e.target.value)));
+            });
+
+            if (append) {
+                els.quiz.container.appendChild(qDiv);
+            } else {
+                els.quiz.container.innerHTML = '';
+                els.quiz.container.appendChild(qDiv);
+                updateNavigationButtons();
+            }
+        }
+
+        function handleSelection(qIndex, optIdx) {
+            if (state.settings.studyMode && state.answers[qIndex] !== undefined) return; // Prevent change if study mode locked
+
+            state.answers[qIndex] = optIdx;
+            
+            if (state.settings.studyMode) {
+                if (state.settings.displayMode === 'single') {
+                    renderSingleQuestion(qIndex, false);
+                } else {
+                    renderQuizUI();
+                    const target = document.getElementById(`qcard-${qIndex}`);
+                    if(target) {
+                        const offset = target.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({top: offset, behavior: 'smooth'});
+                    }
+                }
+            } else {
+                const card = document.getElementById(`qcard-${qIndex}`);
+                card.querySelectorAll('.option-label').forEach(lbl => lbl.classList.remove('selected'));
+                document.getElementById(`label_q${qIndex}_opt${optIdx}`).classList.add('selected');
+            }
+            updateProgress();
+        }
+
+        function updateNavigationButtons() {
+            els.btns.prev.disabled = state.currentIndex === 0;
+            const isLast = state.currentIndex === state.currentQuiz.length - 1;
+            
+            if (isLast) {
+                els.btns.next.style.display = 'none';
+                els.btns.submit.style.display = 'block';
+                els.quiz.navSingle.appendChild(els.btns.submit);
+            } else {
+                els.btns.next.style.display = 'block';
+                els.btns.submit.style.display = 'none';
+            }
+        }
+
+        function updateProgress() {
+            let answered = Object.keys(state.answers).length;
+            let total = state.currentQuiz.length;
+            
+            if (state.settings.displayMode === 'single') {
+                els.quiz.status.innerText = `Question ${state.currentIndex + 1} of ${total}`;
+                let perc = ((state.currentIndex) / total) * 100;
+                if(state.currentIndex === total - 1 && state.answers[state.currentIndex] !== undefined) perc = 100;
+                els.quiz.progressBar.style.width = `${perc}%`;
+            } else {
+                els.quiz.status.innerText = `${answered} of ${total} Answered`;
+                els.quiz.progressBar.style.width = `${(answered / total) * 100}%`;
+            }
+        }
+
+        function attemptSubmit() {
+            const answered = Object.keys(state.answers).length;
+            const total = state.currentQuiz.length;
+            
+            if (answered < total && !state.settings.studyMode) {
+                showModal("Incomplete Exam", `You have only answered ${answered} out of ${total} questions. Are you sure you want to submit and end the test?`, calculateResults);
+            } else {
+                calculateResults();
+            }
+        }
+
+        function calculateResults() {
+            let correctCount = 0;
+            state.failedQuestions = [];
+            els.results.incorrectList.innerHTML = '';
+
+            state.currentQuiz.forEach((q, i) => {
+                const userAnsIdx = state.answers[i];
+                if (userAnsIdx === q.ans) {
+                    correctCount++;
+                } else {
+                    state.failedQuestions.push(q);
+                    const isUnanswered = userAnsIdx === undefined;
+                    els.results.incorrectList.innerHTML += `
+                        <div class="review-card">
+                            <div class="review-q">${i+1}. ${q.q}</div>
+                            <div class="review-ans-row">
+                                <span class="ans-wrong">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    Your Answer: ${isUnanswered ? '<em>Skipped</em>' : q.options[userAnsIdx]}
+                                </span>
+                                <span class="ans-correct">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    Correct Answer: ${q.options[q.ans]}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            const total = state.currentQuiz.length;
+            const percentage = Math.round((correctCount / total) * 100);
+
+            // Update Stats
+            els.results.statTotal.innerText = total;
+            els.results.statCorrect.innerText = correctCount;
+            els.results.statIncorrect.innerText = total - correctCount;
+            els.results.statAccuracy.innerText = `${percentage}%`;
+
+            // SVG Animation
+            els.results.text.innerText = `${percentage}%`;
+            // Calculate stroke-dashoffset for SVG (Circumference ~ 440 for r=70)
+            const circumference = 440;
+            const offset = circumference - (percentage / 100) * circumference;
+            
+            // Allow display block to render before triggering CSS transition
+            els.results.svgProgress.style.strokeDashoffset = '440'; 
+            
+            els.results.incorrectContainer.style.display = state.failedQuestions.length > 0 ? 'block' : 'none';
+            els.btns.retest.style.display = state.failedQuestions.length > 0 ? 'block' : 'none';
+
+            if (percentage >= 80) els.results.title.innerText = "Excellent Job! 🎉";
+            else if (percentage >= 60) els.results.title.innerText = "Good Effort! 👍";
+            else els.results.title.innerText = "Keep Studying! 📚";
+
+            switchScreen('results');
+
+            // Trigger animations after screen is visible
+            setTimeout(() => {
+                els.results.svgProgress.style.strokeDashoffset = offset;
+                if (percentage >= 70) triggerConfetti();
+            }, 100);
+        }
+
+        // --- Event Listeners ---
+        els.inputs.count.addEventListener('input', (e) => els.inputs.countDisplay.innerText = e.target.value);
+        els.inputs.themeStyle.addEventListener('change', applyTheme);
+
+        els.btns.start.addEventListener('click', () => startExam(questionBank));
+        els.btns.retest.addEventListener('click', () => startExam(state.failedQuestions, true));
+        
+        els.btns.prev.addEventListener('click', () => {
+            if (state.currentIndex > 0) {
+                state.currentIndex--;
+                renderSingleQuestion(state.currentIndex);
+                updateProgress();
+            }
+        });
+
+        els.btns.next.addEventListener('click', () => {
+            if (state.currentIndex < state.currentQuiz.length - 1) {
+                state.currentIndex++;
+                renderSingleQuestion(state.currentIndex);
+                updateProgress();
+            }
+        });
+
+        els.btns.submit.addEventListener('click', attemptSubmit);
+        
+        const resetToHome = () => {
+            document.getElementById('confetti').getContext('2d').clearRect(0, 0, window.innerWidth, window.innerHeight);
+            switchScreen('settings');
+        };
+        els.btns.restart.addEventListener('click', resetToHome);
+        els.btns.home.addEventListener('click', resetToHome);
+
+        // Global Click Emoji
+        document.body.addEventListener('mousedown', (e) => {
+            const emoji = state.settings.clickEmoji;
+            if (emoji === 'none') return;
+            if (['INPUT', 'BUTTON', 'SELECT', 'LABEL', 'SPAN'].includes(e.target.tagName)) return;
+
+            const el = document.createElement('div');
+            el.innerText = emoji;
+            el.className = 'floating-emoji';
+            el.style.left = (e.clientX - 16) + 'px'; 
+            el.style.top = (e.clientY - 16) + 'px';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1000);
+        });
+
+        // --- Confetti Animation ---
+        let confettiId;
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let particles = [];
+            const colors = ['#0ea5e9', '#4f46e5', '#10b981', '#f59e0b', '#ec4899'];
+            
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 4,
+                    dx: Math.random() * 4 - 2,
+                    dy: Math.random() * 5 + 2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.floor(Math.random() * 10) - 10,
+                    tiltAngleInc: (Math.random() * 0.07) + 0.05,
+                    tiltAngle: 0
+                });
+            }
+            
+            cancelAnimationFrame(confettiId);
+            
+            function animate() {
+                confettiId = requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.tiltAngle += p.tiltAngleInc;
+                    p.y += (Math.cos(p.tiltAngle) + 1 + p.r / 2) / 2 + p.dy;
+                    p.x += Math.sin(p.tiltAngle) * 2 + p.dx;
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+                    ctx.stroke();
+                });
+            }
+            animate();
+            setTimeout(() => { cancelAnimationFrame(confettiId); ctx.clearRect(0,0, canvas.width, canvas.height); }, 5000);
+        }
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Initialize Defaults
+        els.inputs.count.max = questionBank.length;
+        els.inputs.countDisplay.innerText = els.inputs.count.value;
+        applyTheme();
+
+    </script>
+</body>
+</html>
